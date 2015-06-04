@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>考试练习登录</title>
+    <script type="text/javascript" src="/static/dojo/dojox/mobile/deviceTheme.js"></script>
+    <script type="text/javascript" src="/static/js/dojoconfig.js"></script>
+    <script type="text/javascript" src="/static/dojo/dojo/dojo.js"></script>
+    <script type="text/javascript">
+        require(["dojox/mobile/parser",
+            "dojo/dom",
+            "dojo/request",
+            "dojox/mobile/compat",
+            "dojo/domReady!",
+            "dojox/mobile/Heading",
+            "dojox/mobile/TextBox",
+            "dojox/mobile/Button",
+            "dojox/mobile/RoundRect",
+            "dojox/mobile/FormLayout"
+        ], function (parser, dom, request) {
+            parser.parse();
+            dom.byId("login").onclick = function () {
+                var username = dom.byId("username");
+                var password = dom.byId("password");
+                request.post("/login/", {
+                    data: {
+                        username: username.value,
+                        password: password.value
+                    }
+                }).then(function (text) {
+                            if (text == 'success') {
+                                location.href = '/';
+                            }
+                            else {
+                                dom.byId("err").innerText = '用户名或密码错误';
+                            }
+                        });
+            };
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="/static/css/exam.css">
+</head>
+<body>
+<div class="center">
+    <div class="center">
+        <h1 data-dojo-type="dojox/mobile/Heading" data-dojo-props='fixed:"top"'>图迹练习册</h1>
+        <img src="/static/imgs/logo.fw.png" style="padding: 10px;margin: 5px 0;">
+    </div>
+    <div class="center">
+        <div data-dojo-type="dojox/mobile/RoundRect">
+            <div data-dojo-type="dojox/mobile/FormLayout">
+                <div>
+                    <fieldset style="text-align: center;margin: 0 auto">
+                        <legend>用户名</legend>
+                        <input id="username" data-dojo-type="dojox/mobile/TextBox">
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset style="text-align: center;margin: 0 auto">
+                        <legend>密码</legend>
+                        <input id="password" data-dojo-type="dojox/mobile/TextBox" type="password">
+                    </fieldset>
+                </div>
+
+                <div><span id="err" style="color: red"></span></div>
+
+                <div>
+                    <button id="login" data-dojo-type="dojox/mobile/Button" style="height: auto;width: 200px;margin: 20px auto;line-height: 3em;">
+                        登录
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

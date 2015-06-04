@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>图迹考试练习系统</title>
+    <script type="text/javascript" src="/static/dojo/dojox/mobile/deviceTheme.js"></script>
+    <script type="text/javascript" src="/static/js/dojoconfig.js"></script>
+    <script type="text/javascript" src="/static/dojo/dojo/dojo.js"></script>
+    <script type="text/javascript" src="/static/js/exam.js"></script>
+    <link rel="stylesheet" href="/static/css/exam.css">
+</head>
+<body style="visibility:hidden;">
+
+<div id="page_settings" data-dojo-type="dojox/mobile/ScrollableView" data-dojo-props="selected:true">
+    <ul data-dojo-type="dojox/mobile/RoundRectList">
+        <li data-dojo-type="dojox/mobile/ListItem">
+            单选题
+            <div id="setting_single" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+        <li data-dojo-type="dojox/mobile/ListItem">
+            多选题
+            <div id="setting_multiple" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+        <li data-dojo-type="dojox/mobile/ListItem">
+            判断题
+            <div id="setting_trueorfalse" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+    </ul>
+    <ul data-dojo-type="dojox/mobile/RoundRectList">
+        <li data-dojo-type="dojox/mobile/ListItem">
+            简单
+            <div id="setting_easy" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+        <li data-dojo-type="dojox/mobile/ListItem">
+            一般
+            <div id="setting_normal" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+        <li data-dojo-type="dojox/mobile/ListItem">
+            困难
+            <div id="setting_hard" data-dojo-type="dojox/mobile/Switch"></div>
+        </li>
+    </ul>
+
+    <ul data-dojo-type="dojox/mobile/RoundRectList">
+        <li data-dojo-type="dojox/mobile/ListItem">
+            只练错题
+            <div id="setting_onlywrong" data-dojo-type="dojox/mobile/Switch" value="off"></div>
+        </li>
+        <li data-dojo-type="dojox/mobile/ListItem"
+            data-dojo-props="moveTo:'#',label:'开始练习',onClick:onstart">
+        </li>
+    </ul>
+</div>
+
+<div id="page_exercise" data-dojo-type="dojox/mobile/ScrollableView">
+    <h1 id="exercise_title" data-dojo-type="dojox/mobile/Heading"
+        data-dojo-props="fixed:'top',back:'设置',moveTo:'page_settings'">
+    </h1>
+
+    <div id="exercise_question" data-dojo-type="dojox/mobile/RoundRect">
+    </div>
+
+    <ul id="choices" data-dojo-type="dojox/mobile/RoundRectList">
+    </ul>
+
+    <div data-dojo-type="dojox/mobile/Heading" data-dojo-props="fixed:'bottom'">
+        <span data-dojo-type="dojox/mobile/ToolBarButton" data-dojo-props="onClick:oncommit">
+            查看答案
+        </span>
+        <img id="correct" src="/static/imgs/correct.png">
+        <img id="wrong" src="/static/imgs/wrong.png">
+        <span data-dojo-type="dojox/mobile/ToolBarButton"
+              data-dojo-props='arrow:"right",moveTo:"#",onClick:onnext'
+              style="float: right">
+            下一题
+        </span>
+    </div>
+</div>
+</body>
+</html>
